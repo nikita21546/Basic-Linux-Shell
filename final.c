@@ -175,7 +175,6 @@ int main () {
 					else {
 						printf("2\n");}
 					}
-				}
 			}
 			else {
 				wait (NULL);
