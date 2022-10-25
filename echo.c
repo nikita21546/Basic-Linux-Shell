@@ -4,6 +4,14 @@
 
 int main (void) {
 
-   return execl ("/bin/echo", "echo", NULL);
+   int c = 0; 
+   int cr;
+  while (c != EOF) 
+    { 
+      printf("\n Enter input: "); 
+      c = getchar(); 
+      cr = getchar();  /* Read and discard the carriage return */
+      putchar(c); 
+    } 
 
 }
