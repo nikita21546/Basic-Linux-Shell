@@ -170,7 +170,7 @@ int main () {
 		                  		execl("./ls","./ls", temp[1], NULL);
                     			}
                     			else if(strstr(temp[0],"date")){
-			    			execl("./date","./date", temp[1], NULL);
+			    			execl("./date","./date", temp[1], temp[2], NULL);
                     			}
 					else if(strstr(temp[0],"mkdir")){
 			    			execl("./mkdir","./mkdir", temp[1], NULL);
