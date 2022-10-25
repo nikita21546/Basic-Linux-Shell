@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         fprintf(stderr,"usage: %s path\n",argv[0]);
         exit(1);
     }
-    if (nftw(argv[1], rmFiles,10, FTW_DEPTH|FTW_MOUNT|FTW_PHYS) < 0)
+    if (ftw(argv[1], rmFiles,10) < 0)
     {
         perror("ERROR: ntfw");
         exit(1);
