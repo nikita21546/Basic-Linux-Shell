@@ -7,12 +7,15 @@ int main(int argc, const char *argv[])
 {
 	if (argc == 1)
 	{
-		time_t now = time(NULL);
-   		if (now == -1) {
+		time_t now = time(&now);
+		if (now == -1) {
 			puts("The time() function failed");
-        	}
-
-        	printf("%ld\n", now);
-        	return 0;
+    		}
+		struct tm *ptm = gmtime(&now);
+		if (ptm == NULL) {
+			puts("The gmtime() function failed");
+		}
+		printf("UTC time: %s", asctime(ptm));
+		return 0;
 	}
 }
