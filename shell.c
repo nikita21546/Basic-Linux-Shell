@@ -138,6 +138,7 @@ int main () {
 		else if (strstr (cmd, "PS1") != NULL) {
 			change_prompt ();
 			continue;
+			
 		}
 		else {
 			pid = fork ();
