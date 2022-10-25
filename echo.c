@@ -1,13 +1,9 @@
-#include <iostream>
+include <stdio.h>
+#include <unistd.h>
+#include <dirent.h>
 
-int main() {
-    char buffer[256];
+int main (void) {
 
-    printf("Hello! Please enter some text:\n");
-    while (std::cin >> buffer) {
-        std::cout << buffer << std::endl;
-        std::cout << ">> ";
-    }
+   return execl ("/bin/echo", "echo", NULL);
 
-    return 0;
 }
