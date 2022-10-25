@@ -9,6 +9,7 @@
 #include <errno.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <time.h>
 #define MAX 128
 
 
@@ -145,21 +146,16 @@ int main () {
 			pid = fork ();
 			if (pid == 0) {
 				if (handle_spaces() == 0) {
-                    if (temp[0]=="ls"){
-                            char *args[]={"./ls",NULL};
-		                    execl("./ls","./ls", NULL);
-                    }
-                    else if(temp[0]=="date"){
-			    execl("./date","./date", NULL);
-                     
-                    
-                    }
-					else{
-					printf("2\n");}
-				}	
-				else {
-					process_multiple ();
-				}
+                    			if (temp[0]=="ls"){
+                            			char *args[]={"./ls",NULL};
+		                  		execl("./ls","./ls", NULL);
+                    			}
+                    			else if(temp[0]=="date"){
+			    			execl("./date","./date", NULL);
+                    			}
+					else {
+						printf("2\n");}
+					}
 			}
 			else {
 				wait (NULL);
