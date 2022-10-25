@@ -158,11 +158,20 @@ int main () {
 					}
 				else{
 					if (strstr(temp[0],"ls")){
-		                  		execl("./ls","./ls", NULL);
+		                  		execl("./ls","./ls", temp[1], NULL);
                     			}
                     			else if(strstr(temp[0],"date")){
-			    			execl("./date","./date", NULL);
+			    			execl("./date","./date", temp[1], NULL);
                     			}
+					else if(strstr(temp[0],"mkdir")){
+			    			execl("./mkdir","./mkdir", temp[1], NULL);
+                    			}
+					else if(strstr(temp[0],"rm")){
+			    			execl("./rm","./rm", temp[1], NULL);
+                    			}
+					else if(strstr(temp[0],"rm")){
+			    			execl("./rm","./rm", temp[1], NULL);
+                    			}					
 					else {
 						printf("2\n");}
 					}
