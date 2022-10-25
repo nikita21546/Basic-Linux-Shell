@@ -149,11 +149,13 @@ int main () {
                             char *args[]={"./ls",NULL};
 		                    execl("./ls","./ls", NULL);
                     }
-                    else{
-                        printf("2\n");
+                    else if(temp[0]=="date"){
+			    execl("./date","./date", NULL);
+                     
                     
-
                     }
+					else{
+					printf("2\n");}
 				}	
 				else {
 					process_multiple ();
