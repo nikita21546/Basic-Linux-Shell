@@ -147,11 +147,11 @@ int main () {
 				if (handle_spaces() == 0) {
                     if (temp[0]=="ls"){
                             char *args[]={"./ls",NULL};
-		                    execvp(args[0],args);
+		                    execl("./ls","./ls", NULL);
                     }
                     else{
-                        printf("2");
-                        process_single ();
+                        printf("2\n");
+                    
 
                     }
 				}	
