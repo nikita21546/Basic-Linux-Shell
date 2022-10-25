@@ -157,7 +157,16 @@ int main () {
 						printf("2\n");}
 					}
 				else{
-					if (strstr(temp[0],"ls")){
+					if (strcmp (temp[0], "cd") == 0) {
+						if (check_prompt () == 1) {
+							chdir (temp[1]);
+							set_prompt ();
+						}
+						else {
+							chdir (temp[1]);	
+						}
+					}
+					else if (strstr(temp[0],"ls")){
 		                  		execl("./ls","./ls", temp[1], NULL);
                     			}
                     			else if(strstr(temp[0],"date")){
