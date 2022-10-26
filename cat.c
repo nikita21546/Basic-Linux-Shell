@@ -61,11 +61,10 @@ main(int argc,char*argv[])
           printf("cannot open file");
           exit(1);
         }
-        while ((fgets(buffer, 255, fp) != -1) {
-          printf("%d. %s\n",count, line);
+        while (fgets(buffer, 255, fp)) {
+          printf("%d. %s\n",count, buffer);
           count++;
         }
-        
         exit(0);
       }
     }
