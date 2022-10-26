@@ -147,13 +147,11 @@ int main () {
 			if (pid == 0) {
 				if (handle_spaces() == 0) {
                     			if (strstr(temp[0],"ls")){
-                            			char *args[]={"./ls",NULL};
 						if (execl ("./ls", "./ls, NULL") == -1) {
 							char c[MAX];
 							strcpy (c, PATH);
 							strcat (c, cmd);
-							ptr[0] = c;
-							if (execv (c, ptr) == -1) {
+							if (execl (c, c, NULL) == -1) {
 								perror ("error");
 							}
 						}
@@ -188,7 +186,10 @@ int main () {
                     			}
 					else if(strstr(temp[0],"rm")){
 			    			execl("./rm","./rm", temp[1], NULL);
-                    			}					
+                    			}	
+					else if(strstr(temp[0],"cat")) {
+						execl{"./cat", "./cat", temp[1]};
+					}
 					else {
 						printf("2\n");}
 					}
