@@ -188,7 +188,12 @@ int main () {
 			    			execl("./rm","./rm", temp[1], NULL);
                     			}	
 					else if(strstr(temp[0],"cat")) {
-						execl("./cat", "./cat", temp[1], temp[2], NULL);
+						if (strstr("", temp[2])){
+							execl("./cat", "./cat", temp[1], NULL);
+						}
+						else{
+							execl("./cat", "./cat", temp[1], temp[2], NULL);
+						}
 					}
 					else {
 						printf("2\n");}
