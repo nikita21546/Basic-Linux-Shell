@@ -1,0 +1,7 @@
+TARFET=d.out
+
+all:
+	gcc date.c -o $(TARGET)
+
+clean:
+	rm $(TARGET)
