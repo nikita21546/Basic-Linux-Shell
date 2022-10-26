@@ -19,12 +19,12 @@ int main(int argc, char *argv[])
         fprintf(stderr,"usage: %s path\n",argv[0]);
         exit(1);
     }
-    if (strcmp(argv[2], "-i")==0){
+    if (strcmp(argv[1], "-i")==0){
         char a;
         printf("Are you sure you want to remove this file? (y/n)");
         scanf("%c",&a);
         if (strcmp(a,"y")==0){
-            if (ftw(argv[1], rmFiles,10) < 0)
+            if (ftw(argv[2], rmFiles,10) < 0)
             {
                 perror("ERROR: ntfw");
                 exit(1);
