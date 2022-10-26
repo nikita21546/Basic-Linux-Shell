@@ -18,7 +18,7 @@ int main(int argc, char **argv)
         printf("Error");
         printf("Directory created");
     }
-    else if (argc==3){
+    else if (argc==4){
         if (mkdir(argv[1], 0777) == -1)
             printf("Error");
         if (mkdir(argv[2], 0777) == -1)
