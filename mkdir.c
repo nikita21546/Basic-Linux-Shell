@@ -1,6 +1,7 @@
 // C++ program to create a directory in Linux
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <stdio.h>
 
 int main(int argc, char **argv)
 

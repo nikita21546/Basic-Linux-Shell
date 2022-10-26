@@ -152,7 +152,7 @@ int main () {
 			pid = fork ();
 			if (pid == 0) {
 				if (handle_spaces() == 0) {
-                    			if (strstr(temp[0],"ls")){
+                    			if (strcmp(temp[0],"ls")){
 						if (execl ("./ls", "./ls, NULL") == -1) {
 							char c[MAX];
 							strcpy (c, PATH);
@@ -162,10 +162,10 @@ int main () {
 							}
 						}
                     			}
-                			else if(strstr(temp[0],"date")){
+                			else if(strcmp(temp[0],"date")){
 						execl("./date","./date", NULL);
             				}
-					else if(strstr(temp[0],"pwd")){
+					else if(strcmp(temp[0],"pwd")){
 						if (execl (cmd, cmd, NULL) == -1) {
 							char c[MAX];
 							strcpy (c, PATH);
@@ -180,7 +180,7 @@ int main () {
 					}
 				}
 				else{
-					if (strcmp (temp[0], "cd") == 0) {
+					if (strcmp(temp[0], "cd") == 0) {
 						if (check_prompt () == 1) {
 							chdir (temp[1]);
 							set_prompt ();
@@ -189,23 +189,23 @@ int main () {
 							chdir (temp[1]);	
 						}
 					}
-					else if (strstr(temp[0],"ls")){
+					else if (strcmp(temp[0],"ls")){
 		        			execl("./ls","./ls", temp[1], NULL);
                 			}
-					else if (strstr(temp[0],"&tls")){
+					else if (strcmp(temp[0],"&tls")){
 						pthread_t pid;
 						pthread_create(&pid, NULL, &thread_func, cmd);
 						pthread_join(pid, NULL);
                 			}
-    					else if(strstr(temp[0],"date")){
+    					else if(strcmp(temp[0],"date")){
 					    	execl("./date","./date", temp[1], NULL);
     					}
-					else if (strstr(temp[0],"&tdate")){
+					else if (strcmp(temp[0],"&tdate")){
 						pthread_t pid;
 						pthread_create(&pid, NULL, &thread_func, cmd);
 						pthread_join(pid, NULL);
                 			}
-					else if(strstr(temp[0],"mkdir")){
+					else if(strcmp(temp[0],"mkdir")){
 						if (strstr("", temp[2])){
 							execl("./mkdir", "./mkdir", temp[1], NULL);
 						}
@@ -213,20 +213,20 @@ int main () {
 							execl("./mkdir", "./mkdir", temp[1], temp[2], NULL);
 						}
             				}
-					else if (strstr(temp[0],"&tmkdir")){
+					else if (strcmp(temp[0],"&tmkdir")){
 						pthread_t pid;
 						pthread_create(&pid, NULL, &thread_func, cmd);
 						pthread_join(pid, NULL);
                 			}
-					else if(strstr(temp[0],"rm")){
+					else if(strcmp(temp[0],"rm")){
 			    			execl("./rm","./rm", temp[1], NULL);
 			                }
-					else if (strstr(temp[0],"&trm")){
+					else if (strcmp(temp[0],"&trm")){
 						pthread_t pid;
 						pthread_create(&pid, NULL, &thread_func, cmd);
 						pthread_join(pid, NULL);
                 			}
-					else if(strstr(temp[0],"cat")) {
+					else if(strcmp(temp[0],"cat")) {
 						if (strstr("", temp[2])){
 							execl("./cat", "./cat", temp[1], NULL);
 						}
@@ -234,7 +234,7 @@ int main () {
 							execl("./cat", "./cat", temp[1], temp[2], NULL);
 						}
 					}
-					else if (strstr(temp[0],"&tcat")){
+					else if (strcmp(temp[0],"&tcat")){
 						pthread_t pid;
 						pthread_create(&pid, NULL, &thread_func, cmd);
 						pthread_join(pid, NULL);
