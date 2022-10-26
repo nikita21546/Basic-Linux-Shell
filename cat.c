@@ -3,22 +3,47 @@
 #include<stdlib.h>
 main(int argc,char*argv[])
 {
-  if(argc!=2){ //checks if two arguments are present
+  if(argc!=2 && argc!-3){ //checks if two arguments are present
     printf("\nThe syntax should as be follows");
     printf("\nCommandname filetoread\n");
     exit(1);
   }
-  int fdold,count;
-  char buffer[2048]; //characer buffer to store the bytes
-  fdold=open(argv[1], O_RDONLY);
-  if(fdold==-1)
-  {
-    printf("cannot open file");
-    exit(1);
+  if (argc==2){
+    int fdold,count;
+    char buffer[2048]; //characer buffer to store the bytes
+    fdold=open(argv[1], O_RDONLY);
+    if(fdold==-1)
+     {
+        printf("cannot open file");
+        exit(1);
+      }
+    while((count=read(fdold,buffer,sizeof(buffer)))>0) 
+    {
+      printf("%s",buffer);
+    }
+    exit(0);
   }
-  while((count=read(fdold,buffer,sizeof(buffer)))>0) 
-  {
-    printf("%s",buffer);
+  else if (argc==3){
+    if (argv[1][0]!="-"){
+      int fdold,count, fdold2, count2;
+      char buffer[2048]; //characer buffer to store the bytes
+      fdold=open(argv[1], O_RDONLY);
+      fdold2=open(argv[2], O_RDONLY);
+      if(fdold==-1 || fdold2==-1)
+      {
+        printf("cannot open file");
+        exit(1);
+      }
+      while((count=read(fdold,buffer,sizeof(buffer)))>0) 
+      {
+        printf("%s",buffer);
+      }
+      while((count2=read(fdold2,buffer,sizeof(buffer)))>0) 
+      {
+        printf("%s",buffer);
+      }
+    exit(0);
+      
+    }
   }
-  exit(0);
 }
