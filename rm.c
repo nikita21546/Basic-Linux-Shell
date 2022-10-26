@@ -14,14 +14,34 @@ static int rmFiles(const char *pathname, const struct stat *sbuf, int type, stru
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2)
+    if (argc == 2)
     {
-        fprintf(stderr,"usage: %s path\n",argv[0]);
-        exit(1);
+        if (ftw(argv[1], rmFiles,10) < 0)
+        {
+            perror("ERROR: ntfw");
+            exit(1);
+        }
+        
     }
-    if (ftw(argv[1], rmFiles,10) < 0)
-    {
-        perror("ERROR: ntfw");
+    else if(argc==3){
+        if (strcmp(argv[1],"-i")==0){
+            printf("are you sure you want to remove this file? (y/n)");
+            char a = getchar();
+            if (strcmp(a,"y")==0){
+                if (ftw(argv[2], rmFiles,10) < 0)
+                {
+                    perror("ERROR: ntfw");
+                    exit(1);
+                }
+            }
+            else{
+                printf("File not removed.\n");
+                exit(1);
+            }
+        }
+    }
+    else{
+        fprintf(stderr,"usage: %s path\n",argv[0]);
         exit(1);
     }
     return 0;
