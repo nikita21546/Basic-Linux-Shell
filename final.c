@@ -176,7 +176,7 @@ int main () {
 						pthread_create(&pid, NULL, &thread_func, "./date");
 						pthread_join(pid, NULL);
                 			}
-					else if(strcmp(temp[0],"pwd")==0){
+					else if(strstr(temp[0],"pwd")){
 						if (execl (cmd, cmd, NULL) == -1) {
 							char c[MAX];
 							strcpy (c, PATH);
