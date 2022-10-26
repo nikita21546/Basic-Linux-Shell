@@ -26,6 +26,4 @@ int main(int argc, char **argv)
         printf("Error");
         printf("Directory created");
     }
-    else
-        
 }

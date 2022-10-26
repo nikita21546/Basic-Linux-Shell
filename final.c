@@ -194,12 +194,17 @@ int main () {
                 			}
 					else if (strstr(temp[0],"&tls")){
 						pthread_t pid;
-						pthread_create(&pid, NULL, fcaller, &cmd);
+						pthread_create(&pid, NULL, &thread_func, cmd);
 						pthread_join(pid, NULL);
                 			}
     					else if(strstr(temp[0],"date")){
 					    	execl("./date","./date", temp[1], NULL);
     					}
+					else if (strstr(temp[0],"&tdate")){
+						pthread_t pid;
+						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_join(pid, NULL);
+                			}
 					else if(strstr(temp[0],"mkdir")){
 						if (strstr("", temp[2])){
 							execl("./mkdir", "./mkdir", temp[1], NULL);
@@ -208,9 +213,19 @@ int main () {
 							execl("./mkdir", "./mkdir", temp[1], temp[2], NULL);
 						}
             				}
+					else if (strstr(temp[0],"&tmkdir")){
+						pthread_t pid;
+						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_join(pid, NULL);
+                			}
 					else if(strstr(temp[0],"rm")){
 			    			execl("./rm","./rm", temp[1], NULL);
-			                }	
+			                }
+					else if (strstr(temp[0],"&trm")){
+						pthread_t pid;
+						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_join(pid, NULL);
+                			}
 					else if(strstr(temp[0],"cat")) {
 						if (strstr("", temp[2])){
 							execl("./cat", "./cat", temp[1], NULL);
@@ -219,6 +234,11 @@ int main () {
 							execl("./cat", "./cat", temp[1], temp[2], NULL);
 						}
 					}
+					else if (strstr(temp[0],"&tcat")){
+						pthread_t pid;
+						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_join(pid, NULL);
+                			}
 					else {
 						process_multiple ();
 					}
