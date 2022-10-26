@@ -85,7 +85,8 @@ main(int argc,char*argv[])
           exit(1);
         }
         while (fgets(buffer, 255, fp)) {
-          printf("%d. %s\n",count, buffer);
+          strcat(buffer,"$");
+          printf("%d. %s",count, buffer);
           count++;
         }
         exit(0);
