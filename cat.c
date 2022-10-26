@@ -24,7 +24,7 @@ main(int argc,char*argv[])
     exit(0);
   }
   else if (argc==3){
-    if (!strstr("-n",argv[1]){
+    if (!strstr("-n",argv[1])){
       int fdold,count, fdold2, count2;
       char buffer[2048];
       char buffer2[2048];
