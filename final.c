@@ -230,19 +230,48 @@ int main () {
 						if (strstr("", temp[2])){
 							execl("./mkdir", "./mkdir", temp[1], NULL);
 						}
-						else{
+						else if (strstr("", temp[3])){
 							execl("./mkdir", "./mkdir", temp[1], temp[2], NULL);
+						}
+						else (strstr("", temp[4])){
+							execl("./mkdir", "./mkdir", temp[1], temp[2], temp[3], NULL);
 						}
             				}
 					else if (strcmp(temp[0],"&tmkdir")==0){
-						pthread_t pid;
-						char cmd2[100];
-						strcat(cmd2, "./mkdir ");
-						strcat(cmd2, temp[1]);
-						pthread_create(&pid, NULL, &thread_func, cmd2);
-						pthread_join(pid, NULL);
-						memset(cmd2, 0, strlen(cmd2));
-                			}
+						if (strstr("", temp[2])){
+							pthread_t pid;
+							char cmd2[100];
+							strcat(cmd2, "./mkdir ");
+							strcat(cmd2, temp[1]);
+							pthread_create(&pid, NULL, &thread_func, cmd2);
+							pthread_join(pid, NULL);
+							memset(cmd2, 0, strlen(cmd2));
+						}
+						else if (strstr("", temp[3])){
+							pthread_t pid;
+							char cmd2[100];
+							strcat(cmd2, "./mkdir ");
+							strcat(cmd2, temp[1]);
+							strcat(cmd2, " ");
+							strcat(cmd2, temp[2]);
+							pthread_create(&pid, NULL, &thread_func, cmd2);
+							pthread_join(pid, NULL);
+							memset(cmd2, 0, strlen(cmd2));
+						}
+						else (strstr("", temp[4])){
+							pthread_t pid;
+							char cmd2[100];
+							strcat(cmd2, "./mkdir ");
+							strcat(cmd2, temp[1]);
+							strcat(cmd2, " ");
+							strcat(cmd2, temp[2]);
+							strcat(cmd2, " ");
+							strcat(cmd2, temp[3]);
+							pthread_create(&pid, NULL, &thread_func, cmd2);
+							pthread_join(pid, NULL);
+							memset(cmd2, 0, strlen(cmd2));
+						}
+	               			}
 					else if(strcmp(temp[0],"rm")==0){
 						if (strstr("", temp[2])){
 							execl("./rm", "./rm", temp[1], NULL);
@@ -252,14 +281,29 @@ int main () {
 						}
 			                }
 					else if (strcmp(temp[0],"&trm")==0){
-						pthread_t pid;
-						char cmd2[100];
-						strcat(cmd2, "./rm ");
-						strcat(cmd2, temp[1]);
-						pthread_create(&pid, NULL, &thread_func, cmd2);
-						pthread_join(pid, NULL);
-						memset(cmd2, 0, strlen(cmd2));
-                			}
+						if (strstr("", temp[2])){
+							execl("./rm", "./rm", temp[1], NULL);
+							pthread_t pid;
+							char cmd2[100];
+							strcat(cmd2, "./rm ");
+							strcat(cmd2, temp[1]);
+							pthread_create(&pid, NULL, &thread_func, cmd2);
+							pthread_join(pid, NULL);
+							memset(cmd2, 0, strlen(cmd2));
+						}
+						else{
+							execl("./rm", "./rm", temp[1], temp[2], NULL);
+							pthread_t pid;
+							char cmd2[100];
+							strcat(cmd2, "./rm ");
+							strcat(cmd2, temp[1]);
+							strcat(cmd2, " ");
+							strcat(cmd2, temp[2]);
+							pthread_create(&pid, NULL, &thread_func, cmd2);
+							pthread_join(pid, NULL);
+							memset(cmd2, 0, strlen(cmd2));
+						}
+	               			}
 					else if(strcmp(temp[0],"cat")==0) {
 						if (strstr("", temp[2])){
 							execl("./cat", "./cat", temp[1], NULL);
