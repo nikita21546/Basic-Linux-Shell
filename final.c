@@ -159,12 +159,12 @@ int main () {
                 	else if(strstr(temp[0],"date")){
 						execl("./date","./date", NULL);
             		}
-					else if(strstr(temp[0],"pwd"){
-						if (execv (cmd, cmd, NULL) == -1) {
+					else if(strstr(temp[0],"pwd")){
+						if (execl (cmd, cmd, NULL) == -1) {
 							char c[MAX];
 							strcpy (c, PATH);
 							strcat (c, cmd);
-							if (execv (c, c, NULL) == -1) {
+							if (execl (c, c, NULL) == -1) {
 								perror ("error");
 							}
 						}
@@ -187,7 +187,7 @@ int main () {
 		            execl("./ls","./ls", temp[1], NULL);
                 }
     			else if(strstr(temp[0],"date")){
-			    	execl("./date","./date", temp[1], temp[2], NULL);
+			    	execl("./date","./date", temp[1], NULL);
     			}
 				else if(strstr(temp[0],"mkdir")){
 					execl("./mkdir","./mkdir", temp[1], NULL);
