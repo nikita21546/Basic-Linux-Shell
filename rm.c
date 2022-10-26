@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <ftw.h>
 
 static int rmFiles(const char *pathname, const struct stat *sbuf, int type, struct FTW *ftwb)
