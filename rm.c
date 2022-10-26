@@ -25,20 +25,26 @@ int main(int argc, char *argv[])
         
     }
     else if(argc==3){
-        if (strcmp(argv[1],"-i")==0){
-            printf("are you sure you want to remove this file? (y/n)");
-            char a = getchar();
-            if (strcmp(a,"y")==0){
+        if (strcmp(argv[1],"-f")==0){
+            if (ftw(argv[2], rmFiles,10) < 0)
+            {
+                perror("ERROR: ntfw");
+                exit(1);
+            }
+        }
+        else if (strcmp(argv[1],"-i")==0){
+            printf("Are you sure you want to remove this file? (y/n)");
+            if (getchar()=="y"){
                 if (ftw(argv[2], rmFiles,10) < 0)
                 {
                     perror("ERROR: ntfw");
                     exit(1);
                 }
             }
-            else{
-                printf("File not removed.\n");
-                exit(1);
-            }
+        }
+        else{
+            printf("File not removed.\n");
+            exit(1);
         }
     }
     else{
