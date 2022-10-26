@@ -47,34 +47,25 @@ int main(int argc, const char *argv[])
 	}
 	else if (argc == 2)
 	{
-		if (argv[1][0] == '+')
+		if (strstr('+D', arg[1]))
 		{
-			int op_d = 0, op_l = 0;
-			char *p = (char*)(argv[1] + 1);
-			while(*p){
-				if(*p == 'd') {
-					char buf[BUF_LEN] = {0};
-   					time_t rawtime = time(NULL);
-    					if (rawtime == -1) {
-        					puts("The time() function failed");
-        					return 1;
-    					}
-       					struct tm *ptm = localtime(&rawtime);
-       					if (ptm == NULL) {
-     
-        					puts("The localtime() function failed");
-        					return 1;
-    					}
-    					strftime(buf, BUF_LEN, argv[2]", ptm);
-    					puts(buf);
-					}
-				else if(*p == 'l') op_l = 1;
-				else{
-					perror("Option not available");
-					exit(EXIT_FAILURE);
-				}
-				p++;
-			}
+			char buf[BUF_LEN] = {0};
+   			time_t rawtime = time(NULL);
+    			if (rawtime == -1) {
+        			puts("The time() function failed");
+        			return 1;
+    			}
+       			struct tm *ptm = localtime(&rawtime);
+       			if (ptm == NULL) {
+				puts("The localtime() function failed");
+        			return 1;
+    			}
+    			strftime(buf, BUF_LEN, "%m/%d/%Y", ptm);
+    			puts(buf);
+		}
+		else{
+			perror("Option not available");
+			exit(EXIT_FAILURE);
 		}
 	}
 }
