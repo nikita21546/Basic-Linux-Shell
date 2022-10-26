@@ -1,4 +1,4 @@
-#include<fcntl.h> //header file for file operations
+#include<fcntl.h> 
 #include<stdio.h>
 #include<stdlib.h>
 main(int argc,char*argv[])
@@ -16,7 +16,7 @@ main(int argc,char*argv[])
     printf("cannot open file");
     exit(1);
   }
-  while((count=read(fdold,buffer,sizeof(buffer)))>0) //displaying the content
+  while((count=read(fdold,buffer,sizeof(buffer)))>0) 
   {
     printf("%s",buffer);
   }
