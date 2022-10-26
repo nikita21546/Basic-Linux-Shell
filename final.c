@@ -152,7 +152,7 @@ int main () {
 			pid = fork ();
 			if (pid == 0) {
 				if (handle_spaces() == 0) {
-                    			if (strcmp(temp[0],"ls")==0){
+                    			if (strstr(temp[0],"ls")){
 						if (execl ("./ls", "./ls, NULL") == -1) {
 							char c[MAX];
 							strcpy (c, PATH);
