@@ -162,9 +162,19 @@ int main () {
 							}
 						}
                     			}
+					if (strcmp(temp[0],"&tls")){
+						pthread_t pid;
+						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_join(pid, NULL);
+                    			}
                 			else if(strcmp(temp[0],"date")==0){
 						execl("./date","./date", NULL);
             				}
+					else if (strcmp(temp[0],"&tdate")==0){
+						pthread_t pid;
+						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_join(pid, NULL);
+                			}
 					else if(strcmp(temp[0],"pwd")==0){
 						if (execl (cmd, cmd, NULL) == -1) {
 							char c[MAX];
