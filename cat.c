@@ -47,7 +47,7 @@ main(int argc,char*argv[])
     }
     else{
       if (argv[1][1]=="n"){
-        int fdold, fdold2, count2;
+        int fdold;
         char buffer[2048];
         int size=0;
         char * line = NULL;
