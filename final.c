@@ -152,6 +152,7 @@ int main () {
 			pid = fork ();
 			if (pid == 0) {
 				if (handle_spaces() == 0) {
+					printf(temp[0]);
                     			if (strstr(temp[0],"ls")){
 						if (execl ("./ls", "./ls, NULL") == -1) {
 							char c[MAX];
@@ -186,6 +187,7 @@ int main () {
 						}
 					}
 					else {
+						printf("WILD CARD\n");
 						process_single ();
 					}
 				}
