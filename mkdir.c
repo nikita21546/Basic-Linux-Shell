@@ -5,9 +5,24 @@
 int main(int argc, char **argv)
 
 {
-    if (mkdir(argv[1], 0777) == -1)
+    if (argc==2){
+        if (mkdir(argv[1], 0777) == -1)
+            printf("Error");
+    }
+    else if (argc==3){
+        if (mkdir(argv[1], 0777) == -1)
+            printf("Error");
+        if (mkdir(argv[2], 0777) == -1)
         printf("Error");
-
+    }
+    else if (argc==3){
+        if (mkdir(argv[1], 0777) == -1)
+            printf("Error");
+        if (mkdir(argv[2], 0777) == -1)
+        printf("Error");
+        if (mkdir(argv[3], 0777) == -1)
+        printf("Error");
+    }
     else
         printf("Directory created");
 }
