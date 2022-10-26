@@ -206,7 +206,12 @@ int main () {
                 			}
 					else if (strcmp(temp[0],"&tls")==0){
 						pthread_t pid;
-						pthread_create(&pid, NULL, &thread_func, cmd[2:]);
+						if (strcmp(temp[1], "-a")==0){
+							pthread_create(&pid, NULL, &thread_func, "./ls -a");
+						}
+						if (strcmp(temp[1], "-l")==0){
+							pthread_create(&pid, NULL, &thread_func, "./ls -l");
+						}
 						pthread_join(pid, NULL);
                 			}
     					else if(strcmp(temp[0],"date")==0){
@@ -214,7 +219,11 @@ int main () {
     					}
 					else if (strcmp(temp[0],"&tdate")==0){
 						pthread_t pid;
-						pthread_create(&pid, NULL, &thread_func, cmd);
+						char cmd2[100];
+						for (int i = 1 ; i < strlen(temp[1]) ; i++){
+							strcat(cmd2, temp[1][i]);
+						}
+						pthread_create(&pid, NULL, &thread_func, cmd2);
 						pthread_join(pid, NULL);
                 			}
 					else if(strcmp(temp[0],"mkdir")==0){
