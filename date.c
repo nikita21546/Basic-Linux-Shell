@@ -21,7 +21,7 @@ int main(int argc, const char *argv[])
 	}
 	else if (argc == 2)
 	{
-		if (arg[1])
+		if (argv[1])
 		{
 			char buf[BUF_LEN] = {0};
    			time_t rawtime = time(NULL);
