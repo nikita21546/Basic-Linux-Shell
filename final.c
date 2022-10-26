@@ -10,8 +10,14 @@
 #include <sys/stat.h>
 #include <dirent.h>
 #include <time.h>
+#include <pthread.h>
 #define MAX 128
 
+void* thread_func(void* argument) {
+	char *f1 = (char *) argument;
+	system(f1);
+	pthread_exit(NULL); // you could also return NULL here to exit no difference
+}
 
 char cmd[MAX], cwd[MAX];
 char temp[MAX][MAX];
@@ -146,7 +152,7 @@ int main () {
 			pid = fork ();
 			if (pid == 0) {
 				if (handle_spaces() == 0) {
-                    if (strstr(temp[0],"ls")){
+                    			if (strstr(temp[0],"ls")){
 						if (execl ("./ls", "./ls, NULL") == -1) {
 							char c[MAX];
 							strcpy (c, PATH);
@@ -155,10 +161,10 @@ int main () {
 								perror ("error");
 							}
 						}
-                    }
-                	else if(strstr(temp[0],"date")){
+                    			}
+                			else if(strstr(temp[0],"date")){
 						execl("./date","./date", NULL);
-            		}
+            				}
 					else if(strstr(temp[0],"pwd")){
 						if (execl (cmd, cmd, NULL) == -1) {
 							char c[MAX];
@@ -173,44 +179,54 @@ int main () {
 						process_single ();
 					}
 				}
-			else{
-				if (strcmp (temp[0], "cd") == 0) {
-					if (check_prompt () == 1) {
-						chdir (temp[1]);
-						set_prompt ();
+				else{
+					if (strcmp (temp[0], "cd") == 0) {
+						if (check_prompt () == 1) {
+							chdir (temp[1]);
+							set_prompt ();
+						}
+						else {
+							chdir (temp[1]);	
+						}
+					}
+					else if (strstr(temp[0],"ls")){
+		        			execl("./ls","./ls", temp[1], NULL);
+                			}
+					else if (strstr(temp[0],"&tls")){
+						pthread_t pid;
+						pthread_create(&pid, NULL, fcaller, &cmd);
+						pthread_join(pid, NULL);
+                			}
+    					else if(strstr(temp[0],"date")){
+					    	execl("./date","./date", temp[1], NULL);
+    					}
+					else if(strstr(temp[0],"mkdir")){
+						if (strstr("", temp[2])){
+							execl("./mkdir", "./mkdir", temp[1], NULL);
+						}
+						else{
+							execl("./mkdir", "./mkdir", temp[1], temp[2], NULL);
+						}
+            				}
+					else if(strstr(temp[0],"rm")){
+			    			execl("./rm","./rm", temp[1], NULL);
+			                }	
+					else if(strstr(temp[0],"cat")) {
+						if (strstr("", temp[2])){
+							execl("./cat", "./cat", temp[1], NULL);
+						}
+						else{
+							execl("./cat", "./cat", temp[1], temp[2], NULL);
+						}
 					}
 					else {
-						chdir (temp[1]);	
+						process_multiple ();
 					}
-				}
-				else if (strstr(temp[0],"ls")){
-		            execl("./ls","./ls", temp[1], NULL);
-                }
-    			else if(strstr(temp[0],"date")){
-			    	execl("./date","./date", temp[1], NULL);
-    			}
-				else if(strstr(temp[0],"mkdir")){
-					execl("./mkdir","./mkdir", temp[1], NULL);
-            	}
-				else if(strstr(temp[0],"rm")){
-	    			execl("./rm","./rm", temp[1], NULL);
-                }	
-				else if(strstr(temp[0],"cat")) {
-					if (strstr("", temp[2])){
-						execl("./cat", "./cat", temp[1], NULL);
-					}
-					else{
-						execl("./cat", "./cat", temp[1], temp[2], NULL);
-					}
-				}
-				else {
-					process_multiple ();
 				}
 			}
-		}
-		else {
-			wait (NULL);
+			else {
+				wait (NULL);
+			}
 		}
 	}
-}
 }
