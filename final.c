@@ -220,11 +220,11 @@ int main () {
 					else if (strcmp(temp[0],"&tdate")==0){
 						pthread_t pid;
 						char cmd2[100];
-						for (int i = 1 ; i < strlen(temp[1]) ; i++){
-							strcat(cmd2, temp[1][i]);
-						}
+						strcat(cmd2, "./date ");
+						strcat(cmd2, temp[1]);
 						pthread_create(&pid, NULL, &thread_func, cmd2);
 						pthread_join(pid, NULL);
+						memset(cmd2, 0, strlen(cmd2));
                 			}
 					else if(strcmp(temp[0],"mkdir")==0){
 						if (strstr("", temp[2])){
@@ -236,16 +236,24 @@ int main () {
             				}
 					else if (strcmp(temp[0],"&tmkdir")==0){
 						pthread_t pid;
-						pthread_create(&pid, NULL, &thread_func, cmd);
+						char cmd2[100];
+						strcat(cmd2, "./mkdir ");
+						strcat(cmd2, temp[1]);
+						pthread_create(&pid, NULL, &thread_func, cmd2);
 						pthread_join(pid, NULL);
+						memset(cmd2, 0, strlen(cmd2));
                 			}
 					else if(strcmp(temp[0],"rm")==0){
 			    			execl("./rm","./rm", temp[1], NULL);
 			                }
 					else if (strcmp(temp[0],"&trm")==0){
 						pthread_t pid;
-						pthread_create(&pid, NULL, &thread_func, cmd);
+						char cmd2[100];
+						strcat(cmd2, "./rm ");
+						strcat(cmd2, temp[1]);
+						pthread_create(&pid, NULL, &thread_func, cmd2);
 						pthread_join(pid, NULL);
+						memset(cmd2, 0, strlen(cmd2));
                 			}
 					else if(strcmp(temp[0],"cat")==0) {
 						if (strstr("", temp[2])){
@@ -256,10 +264,27 @@ int main () {
 						}
 					}
 					else if (strcmp(temp[0],"&tcat")==0){
-						pthread_t pid;
-						pthread_create(&pid, NULL, &thread_func, cmd);
-						pthread_join(pid, NULL);
-                			}
+						if (strstr("", temp[2])){
+							pthread_t pid;
+							char cmd2[100];
+							strcat(cmd2, "./cat ");
+							strcat(cmd2, temp[1]);
+							pthread_create(&pid, NULL, &thread_func, cmd2);
+							pthread_join(pid, NULL);
+							memset(cmd2, 0, strlen(cmd2));
+						}
+						else{
+							pthread_t pid;
+							char cmd2[100];
+							strcat(cmd2, "./cat ");
+							strcat(cmd2, temp[1]);
+							strcat(cmd2, " ");
+							strcat(cmd2, temp[2]);
+							pthread_create(&pid, NULL, &thread_func, cmd2);
+							pthread_join(pid, NULL);
+							memset(cmd2, 0, strlen(cmd2));
+						}
+	            			}
 					else {
 						process_multiple ();
 					}
