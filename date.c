@@ -1,34 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #define BUF_LEN 256
-
-void _date(const char *dir,int op_a,int op_l, char* b) {
-    
-    char buf[BUF_LEN] = {0};
-    
-    time_t rawtime = time(NULL);
-    
-    if (rawtime == -1) {
-        
-        puts("The time() function failed");
-        return 1;   
-    }
-    
-    struct tm *ptm = localtime(&rawtime);
-    
-    if (ptm == NULL) {
-        
-        puts("The localtime() function failed");
-        return 1;
-    }
-    
-    memset(buf, 0, BUF_LEN);
-    strftime(buf, BUF_LEN, b, ptm);
-    puts(buf);       
-
-    return 0;
-}
 
 int main(int argc, const char *argv[])
 {
@@ -47,7 +21,7 @@ int main(int argc, const char *argv[])
 	}
 	else if (argc == 2)
 	{
-		if (strstr('+D', arg[1]))
+		if (arg[1])
 		{
 			char buf[BUF_LEN] = {0};
    			time_t rawtime = time(NULL);
@@ -60,7 +34,7 @@ int main(int argc, const char *argv[])
 				puts("The localtime() function failed");
         			return 1;
     			}
-    			strftime(buf, BUF_LEN, "%m/%d/%Y", ptm);
+    			strftime(buf, BUF_LEN, argv[1], ptm);
     			puts(buf);
 		}
 		else{

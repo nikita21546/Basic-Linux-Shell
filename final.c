@@ -159,8 +159,19 @@ int main () {
                     			else if(strstr(temp[0],"date")){
 			    			execl("./date","./date", NULL);
                     			}
+					else if(strstr(temp[0],"pwd"){
+						if (execv (cmd, cmd, NULL) == -1) {
+							char c[MAX];
+							strcpy (c, PATH);
+							strcat (c, cmd);
+							if (execv (c, c, NULL) == -1) {
+								perror ("error");
+							}
+						}
+					}
 					else {
-						printf("2\n");}
+						process_single ();
+					}
 					}
 				else{
 					if (strcmp (temp[0], "cd") == 0) {
@@ -183,9 +194,6 @@ int main () {
                     			}
 					else if(strstr(temp[0],"rm")){
 			    			execl("./rm","./rm", temp[1], NULL);
-                    			}
-					else if(strstr(temp[0],"rm")){
-			    			execl("./rm","./rm", temp[1], NULL);
                     			}	
 					else if(strstr(temp[0],"cat")) {
 						if (strstr("", temp[2])){
@@ -196,9 +204,9 @@ int main () {
 						}
 					}
 					else {
-						printf("2\n");}
+						process_multiple ();
 					}
-			}
+				}
 			else {
 				wait (NULL);
 			}
