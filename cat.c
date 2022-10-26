@@ -25,7 +25,7 @@ main(int argc,char*argv[])
     exit(0);
   }
   else if (argc==3){
-    if (!strstr(argv[1],"-n") && !strstr(argv[1], "-b")){
+    if (!strstr(argv[1],"-n") && !strstr(argv[1], "-e")){
       int fdold,count, fdold2, count2;
       char buffer[2048];
       char buffer2[2048];
@@ -68,7 +68,7 @@ main(int argc,char*argv[])
         }
         exit(0);
       }
-    else if (strstr(argv[1], "-b")){
+    else if (strstr(argv[1], "-e")){
       int fdold;
         char buffer[2048];
         int size=0;
@@ -87,8 +87,7 @@ main(int argc,char*argv[])
         while (fgets(buffer, 255, fp)) {
           buffer[strcspn(buffer, "\n")] = 0;
           strcat(buffer,"$");
-          printf("%d. %s\n",count, buffer);
-          count++;
+          printf("%s\n",count, buffer);
         }
         exit(0);
       }
