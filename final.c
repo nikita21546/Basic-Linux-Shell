@@ -153,7 +153,7 @@ int main () {
 			if (pid == 0) {
 				if (handle_spaces() == 0) {
 					printf(temp[0]);
-                    			if (strstr(temp[0],"ls")){
+                    			if (strcmp(temp[0],"ls")==0){
 						if (execl ("./ls", "./ls, NULL") == -1) {
 							char c[MAX];
 							strcpy (c, PATH);
@@ -163,9 +163,9 @@ int main () {
 							}
 						}
                     			}
-					if (strcmp(temp[0],"&tls")){
+					if (strcmp(temp[0],"&tls")==0){
 						pthread_t pid;
-						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_create(&pid, NULL, &thread_func, "./ls");
 						pthread_join(pid, NULL);
                     			}
                 			else if(strcmp(temp[0],"date")==0){
@@ -173,7 +173,7 @@ int main () {
             				}
 					else if (strcmp(temp[0],"&tdate")==0){
 						pthread_t pid;
-						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_create(&pid, NULL, &thread_func, "./date");
 						pthread_join(pid, NULL);
                 			}
 					else if(strcmp(temp[0],"pwd")==0){
@@ -206,7 +206,7 @@ int main () {
                 			}
 					else if (strcmp(temp[0],"&tls")==0){
 						pthread_t pid;
-						pthread_create(&pid, NULL, &thread_func, cmd);
+						pthread_create(&pid, NULL, &thread_func, cmd[2:]);
 						pthread_join(pid, NULL);
                 			}
     					else if(strcmp(temp[0],"date")==0){
