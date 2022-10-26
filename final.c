@@ -233,7 +233,7 @@ int main () {
 						else if (strstr("", temp[3])){
 							execl("./mkdir", "./mkdir", temp[1], temp[2], NULL);
 						}
-						else (strstr("", temp[4])){
+						else {
 							execl("./mkdir", "./mkdir", temp[1], temp[2], temp[3], NULL);
 						}
             				}
@@ -258,7 +258,7 @@ int main () {
 							pthread_join(pid, NULL);
 							memset(cmd2, 0, strlen(cmd2));
 						}
-						else (strstr("", temp[4])){
+						else {
 							pthread_t pid;
 							char cmd2[100];
 							strcat(cmd2, "./mkdir ");
@@ -282,7 +282,6 @@ int main () {
 			                }
 					else if (strcmp(temp[0],"&trm")==0){
 						if (strstr("", temp[2])){
-							execl("./rm", "./rm", temp[1], NULL);
 							pthread_t pid;
 							char cmd2[100];
 							strcat(cmd2, "./rm ");
@@ -292,7 +291,6 @@ int main () {
 							memset(cmd2, 0, strlen(cmd2));
 						}
 						else{
-							execl("./rm", "./rm", temp[1], temp[2], NULL);
 							pthread_t pid;
 							char cmd2[100];
 							strcat(cmd2, "./rm ");
