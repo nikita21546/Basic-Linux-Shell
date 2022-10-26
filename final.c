@@ -148,7 +148,15 @@ int main () {
 				if (handle_spaces() == 0) {
                     			if (strstr(temp[0],"ls")){
                             			char *args[]={"./ls",NULL};
-		                  		execl("./ls","./ls", NULL);
+						if (execl ("./ls", "./ls, NULL") == -1) {
+							char c[MAX];
+							strcpy (c, PATH);
+							strcat (c, cmd);
+							ptr[0] = c;
+							if (execv (c, ptr) == -1) {
+								perror ("error");
+							}
+						}
                     			}
                     			else if(strstr(temp[0],"date")){
 			    			execl("./date","./date", NULL);
