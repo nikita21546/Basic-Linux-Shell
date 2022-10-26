@@ -1,6 +1,7 @@
 #include<fcntl.h> 
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h>
 main(int argc,char*argv[])
 {
   if(argc!=2 && argc!=3){ //checks if two arguments are present
@@ -24,7 +25,7 @@ main(int argc,char*argv[])
     exit(0);
   }
   else if (argc==3){
-    if (!strstr("-n",argv[1])){
+    if (!strstr(argv[1],"-n") && !strstr(argv[1]), "-b"){
       int fdold,count, fdold2, count2;
       char buffer[2048];
       char buffer2[2048];
@@ -67,7 +68,7 @@ main(int argc,char*argv[])
         }
         exit(0);
       }
-    else if (strstr(argv[1], "-e"){
+    else if (strstr(argv[1], "-b")){
       int fdold;
         char buffer[2048];
         int size=0;
@@ -84,12 +85,10 @@ main(int argc,char*argv[])
           exit(1);
         }
         while (fgets(buffer, 255, fp)) {
-          printf("%d. %s"$"\n",count, buffer);
+          printf("%d. %s\n",count, buffer);
           count++;
         }
         exit(0);
       }
     }
-    }
-  }
-
+}
