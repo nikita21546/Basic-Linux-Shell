@@ -44,7 +44,28 @@ main(int argc,char*argv[])
         printf("%s\n",buffer2);
       }
     exit(0);
-      
+    }
+    else{
+      if (argsv[1][1]==n){
+        int fdold,count, fdold2, count2;
+        char buffer[2048];
+        int size=0;
+        char * line = NULL;
+        size_t len = 0;
+        ssize_t read;
+        int count=1;
+        fdold=open(argv[1], O_RDONLY);
+        if(fdold==-1)
+        {
+          printf("cannot open file");
+          exit(1);
+        }
+        while ((read = getline(&line, &len, fp)) != -1) {
+          printf("%d. %s",count, line);
+        }
+        
+        exit(0);
+      }
     }
   }
 }
