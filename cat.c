@@ -46,8 +46,8 @@ main(int argc,char*argv[])
     exit(0);
     }
     else{
-      if (argsv[1][1]==n){
-        int fdold,count, fdold2, count2;
+      if (argv[1][1]=="n"){
+        int fdold, fdold2, count2;
         char buffer[2048];
         int size=0;
         char * line = NULL;
@@ -60,7 +60,7 @@ main(int argc,char*argv[])
           printf("cannot open file");
           exit(1);
         }
-        while ((read = getline(&line, &len, fp)) != -1) {
+        while ((read = getline(&line, &len, fdold)) != -1) {
           printf("%d. %s",count, line);
         }
         
