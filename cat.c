@@ -54,7 +54,7 @@ main(int argc,char*argv[])
         size_t len = 0;
         ssize_t read;
         int count=1;
-        fdold=open(argv[1], O_RDONLY);
+        fdold=open(argv[2], O_RDONLY);
         if(fdold==-1)
         {
           printf("cannot open file");
