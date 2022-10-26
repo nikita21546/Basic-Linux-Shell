@@ -3,7 +3,7 @@
 #include<stdlib.h>
 main(int argc,char*argv[])
 {
-  if(argc!=2 && argc!-3){ //checks if two arguments are present
+  if(argc!=2 && argc!=3){ //checks if two arguments are present
     printf("\nThe syntax should as be follows");
     printf("\nCommandname filetoread\n");
     exit(1);
@@ -26,7 +26,8 @@ main(int argc,char*argv[])
   else if (argc==3){
     if (argv[1][0]!="-"){
       int fdold,count, fdold2, count2;
-      char buffer[2048]; //characer buffer to store the bytes
+      char buffer[2048];
+      char buffer2[2048];
       fdold=open(argv[1], O_RDONLY);
       fdold2=open(argv[2], O_RDONLY);
       if(fdold==-1 || fdold2==-1)
@@ -36,11 +37,11 @@ main(int argc,char*argv[])
       }
       while((count=read(fdold,buffer,sizeof(buffer)))>0) 
       {
-        printf("%s",buffer);
+        printf("%s\n",buffer);
       }
-      while((count2=read(fdold2,buffer,sizeof(buffer)))>0) 
+      while((count2=read(fdold2,buffer2,sizeof(buffer2)))>0) 
       {
-        printf("%s",buffer);
+        printf("%s\n",buffer2);
       }
     exit(0);
       
