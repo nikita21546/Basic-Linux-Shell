@@ -24,7 +24,7 @@ main(int argc,char*argv[])
     exit(0);
   }
   else if (argc==3){
-    if (argv[1][0]!="-"){
+    if (!strstr("-n",argv[1]){
       int fdold,count, fdold2, count2;
       char buffer[2048];
       char buffer2[2048];
@@ -46,7 +46,6 @@ main(int argc,char*argv[])
     exit(0);
     }
     else{
-      if (argv[1][1]=="n"){
         int fdold;
         char buffer[2048];
         int size=0;
@@ -54,14 +53,17 @@ main(int argc,char*argv[])
         size_t len = 0;
         ssize_t read;
         int count=1;
+        FILE *fp;
+        fp= fopen(argv[2], "r");
         fdold=open(argv[2], O_RDONLY);
         if(fdold==-1)
         {
           printf("cannot open file");
           exit(1);
         }
-        while ((read = getline(&line, &len, fdold)) != -1) {
-          printf("%d. %s",count, line);
+        while ((fgets(buffer, 255, fp) != -1) {
+          printf("%d. %s\n",count, line);
+          count++;
         }
         
         exit(0);
