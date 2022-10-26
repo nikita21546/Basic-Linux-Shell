@@ -244,7 +244,12 @@ int main () {
 						memset(cmd2, 0, strlen(cmd2));
                 			}
 					else if(strcmp(temp[0],"rm")==0){
-			    			execl("./rm","./rm", temp[1], NULL);
+						if (strstr("", temp[2])){
+							execl("./rm", "./rm", temp[1], NULL);
+						}
+						else{
+							execl("./rm", "./rm", temp[1], temp[2], NULL);
+						}
 			                }
 					else if (strcmp(temp[0],"&trm")==0){
 						pthread_t pid;
